@@ -11,7 +11,7 @@ class User(AbstractUser):
     STAFF = "staff"
 
     ROLE_CHOICES = [(CUSTOMER, "Customer"),(VENDOR, "Vendor"), (STAFF, "Staff")]
-
+    phone = models.CharField(max_length=20, blank=True)
     role = models.CharField(max_length=20,choices=ROLE_CHOICES,default=CUSTOMER)
     referral_code = models.CharField( max_length=20, unique=True, blank=True)
     referred_by = models.ForeignKey("self", on_delete=models.SET_NULL, null=True,blank=True,related_name="referrals")

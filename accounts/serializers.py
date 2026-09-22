@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.core.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError
 from django.db.models import Q
 from rest_framework import serializers
 
