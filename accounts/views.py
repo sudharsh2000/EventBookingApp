@@ -17,7 +17,7 @@ class SignupView(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(role='user')
+        serializer.save(role='customer')
         username = serializer.data['username']
         email = serializer.data['email']
 
@@ -27,7 +27,7 @@ class Loginview(APIView):
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        usercheck = serializer.validated_data.get('user')
+        usercheck = serializer.validated_data.get('customer')
         user = authenticate(username=usercheck.username, password=serializer.validated_data['password'])
         if user is None:
             return Response({'error': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
